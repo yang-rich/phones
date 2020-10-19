@@ -9,6 +9,7 @@ class Phone{
     public $brand;
     public $price;
     public $specs;
+    public $image;
     
     public function __construct($id, $name, $ostype, $brand, $price, $specs){
         $this->id = $id;
@@ -17,22 +18,23 @@ class Phone{
         $this->brand = $brand;
         $this->price = $price;
         $this->specs = $specs;
+        $this->image = $image;
     }
 }
 
 class Allphones{
 
     static function create($phones){
-        $query = "INSERT INTO phones (name, ostype, brand, price, specs) VALUES ($1, $2,$3, $4, $5)";
-        $query_params = array($phones->name, $phones->ostype, $phones->brand, $phones->price, $phones->specs);
+        $query = "INSERT INTO phones (name, ostype, brand, price, specs, image) VALUES ($1, $2,$3, $4, $5, $6)";
+        $query_params = array($phones->name, $phones->ostype, $phones->brand, $phones->price, $phones->specs, $body_object->image);
 
         pg_query_params($query, $query_params);
         return self::display();
     }
 
     static function update($phones){
-        $query = "UPDATE phones set name = $1, ostype = $2, brand = $3, price = $4, specs = $5 WHERE id = $6";
-        $query_params = array($phones->name, $phones->ostype, $phones->brand, $phones->price, $phones->specs, $phones->id);
+        $query = "UPDATE phones set name = $1, ostype = $2, brand = $3, price = $4, specs = $5, image = $6 WHERE id = $7";
+        $query_params = array($phones->name, $phones->ostype, $phones->brand, $phones->price, $phones->specs, $body_object->image, $phones->id);
 
         pg_query_params($query, $query_params);
         return self::display();
@@ -58,7 +60,8 @@ class Allphones{
                 $row->ostype,
                 $row->brand,
                 intval($row->price),
-                $row->specs
+                $row->specs,
+                $row->image
             );
             $myPhones[] = $new_phone;
             $row = pg_fetch_object($results);

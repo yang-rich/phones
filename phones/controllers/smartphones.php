@@ -9,7 +9,7 @@ if($_REQUEST['action'] === 'index'){
     $request_body = file_get_contents('php://input');
     $body_object = json_decode($request_body);
     
-    $new_phone = new Phone(null, $body_object->name, $body_object->ostype, $body_object->brand, $body_object->price, $body_object->specs);
+    $new_phone = new Phone(null, $body_object->name, $body_object->ostype, $body_object->brand, $body_object->price, $body_object->specs, $body_object->image);
 
     $all_phones = Allphones::create($new_phone);
     echo json_encode($all_phones);
@@ -18,7 +18,7 @@ if($_REQUEST['action'] === 'index'){
     $request_body = file_get_contents('php://input');
     $body_object = json_decode($request_body);
     
-    $update_phones = new Phone($_REQUEST['id'], $body_object->name, $body_object->ostype, $body_object->brand, $body_object->price, $body_object->specs);
+    $update_phones = new Phone($_REQUEST['id'], $body_object->name, $body_object->ostype, $body_object->brand, $body_object->price, $body_object->specs, $body_object->image);
 
     $all_phones = Allphones::update($update_phones);
     echo json_encode($all_phones);

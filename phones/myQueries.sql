@@ -10,7 +10,8 @@ insert into phones (name, ostype, brand, price, specs) values ('Pixel 5', 'Andro
 
 insert into phones (name, ostype, brand, price, specs) values ('Galaxy S20', 'Android', 'Samasung', 999, 'stuff');
 
---pretending to add stuff
-
-
 select * from phones;
+
+ALTER TABLE phones ALTER COLUMN specs TYPE TEXT;
+
+ALTER TABLE phones ADD image text;

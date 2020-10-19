@@ -54,19 +54,19 @@ class Form extends Component {
         {console.log("we are here pt2")}
         <br />
         <label>Operating System: </label>
-        <input type="text" name="ostype" onKeyUp={this.handleChange}></input>
+        <input type="text" name="ostype" onChange={this.handleChange}></input>
         <br />
         <label>Phone Brand: </label>
-        <input type="text" name="brand" onKeyUp={this.handleChange}></input>
+        <input type="text" name="brand" onChange={this.handleChange}></input>
         <br />
         <label>Price: $</label>
-        <input type="number" name="price" onKeyUp={this.handleChange}></input>
+        <input type="number" name="price" onChange={this.handleChange}></input>
         <br />
         <label>Specifications and Comments: </label>
-        <input type="text" name="specs" onKeyUp={this.handleChange}></input>
+        <input type="text" name="specs" onChange={this.handleChange}></input>
         <br />
         <label>Image URL: </label>
-        <input type="text" name="image" onKeyUp={this.handleChange}></input>
+        <input type="text" name="image" onChange={this.handleChange}></input>
         <br />
         <input className="btn btn-light" type="submit"></input>
       </form>

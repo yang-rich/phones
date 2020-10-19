@@ -4,10 +4,20 @@ import axios from 'axios';
 
 class App extends React.Component{
   state = {
+    // name: undefined,
+    // ostype: undefined,
+    // price: undefined,
+    // specs: undefined,
+    // brand: undefined,
     phones: []
   }
   componentDidMount = () =>{
     this.getPhones();
+  }
+  handleChange = (event) =>{
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
   getPhones = () =>{
     axios
@@ -18,21 +28,93 @@ class App extends React.Component{
     )
     .catch((error) => console.error(error));
   }
+  handleCreate = (event) =>{
+    event.preventDefault();
+    axios
+    .post("/smartphones", 
+      {
+        name: this.state.name,
+        ostype: this.state.ostype,
+        brand: this.state.brand,
+        price: this.state.price,
+        specs: this.state.specs
+      }
+    )
+    .then(
+      (response) => this.setState({ phones: response.data }),
+      (err) => console.error(err)
+    )
+    .catch((error) => console.error(error));
+  }
+  handleUpdate = (event) =>{
+    event.preventDefault();
+    // console.log(event.target.id)
+    axios
+    .put(`/smartphones/${event.target.id}`, 
+      {
+        name: this.state.name,
+        ostype: this.state.ostype,
+        brand: this.state.brand,
+        price: this.state.price,
+        specs: this.state.specs
+      }
+    )
+    .then(
+      (response) => this.setState({ phones: response.data }),
+      (err) => console.error(err)
+    )
+    .catch((error) => console.error(error));
+  }
+  handleDelete = (event) =>{
+    // console.log(event.target.id);
+    axios
+    .delete("/smartphones/" + event.target.id)
+    .then(
+      (response) => this.setState({ phones: response.data }),
+      (err) => console.error(err)
+    )
+    .catch((error) => console.error(error));
+  }
   render(){
     return (
-      <div>
+      <div className = "container">
         <h3>Create a new smartphone listing!</h3>
-        <form>
-          <label>name: </label>
-          <input type="text" name="name" ></input><br/>
-          <label>brand: </label>
-          <input type="text" name="brand"></input><br/>
-          <input type="submit"></input>
-        </form>
+        <form onSubmit={this.handleCreate}>
+          <label>Phone Name: </label>
+          <input type="text" name={"name"} onKeyUp={this.handleChange}></input><br/>
+          <label>Operating System: </label>
+          <input type="text" name={"ostype"} onKeyUp={this.handleChange}></input><br/>
+          <label>Phone Brand: </label>
+          <input type="text" name={"brand"} onKeyUp={this.handleChange}></input><br/>
+          <label>Price: $</label>
+          <input type="text" name={"price"} onKeyUp={this.handleChange}></input><br/>
+          <label>Image URL: </label>
+          <input type="text" name={"specs"} onKeyUp={this.handleChange}></input><br/>
+          <input className="butbtn btn-secondary" type="submit"></input>
+        </form><br/><br/><br/>
 
         {this.state.phones.map(fone => {
-          return <div>
-            <h1>{fone.name}</h1><br />
+          return <div key = {fone.id}>
+            <h1>{fone.name}</h1>
+            <p>${fone.price}, made by {fone.brand} and runs on {fone.ostype}</p>
+            <img className="rounded mx-auto d-block" src={fone.specs} alt={fone.specs}/>
+            <details>
+              <summary>Edit</summary>
+              <form id={fone.id} onSubmit={this.handleUpdate}>
+                <label>Name: </label>
+                <input type="text" name={"name"} defaultValue = {fone.name} onKeyUp={this.handleChange}></input><br/>
+                <label>OS Type: </label>
+                <input type="text" name={"ostype"} defaultValue = {fone.ostype} onKeyUp={this.handleChange}></input><br/>
+                <label>Brand: </label>
+                <input type="text" name={"brand"} defaultValue = {fone.brand} onKeyUp={this.handleChange}></input><br/>
+                <label>Price:</label>
+                <input type="text" name={"price"} defaultValue = {fone.price} onKeyUp={this.handleChange}></input><br/>
+                <label>Image URL: </label>
+                <input type="text" name={"specs"} defaultValue = {fone.specs} onKeyUp={this.handleChange}></input><br/>
+                <input type="submit"></input>
+              </form>
+            </details>
+            <button className="btn btn-secondary" onClick={this.handleDelete} id={fone.id}>DELETE</button><br />
           </div>
         })}
       </div>

@@ -42,6 +42,7 @@ class App extends React.Component {
             brand: "",
             price: "",
             specs: "",
+            image: ""
           }),
         (err) => console.error(err)
       )
@@ -100,8 +101,8 @@ class App extends React.Component {
                 </p>
                 <img
                   className="rounded mx-auto d-block"
-                  src={fone.specs}
-                  alt={fone.specs}
+                  src={fone.image}
+                  alt={fone.image}
                 />
                 <details>
                   <summary>Edit</summary>
@@ -132,17 +133,25 @@ class App extends React.Component {
                     <br />
                     <label>Price:</label>
                     <input
-                      type="text"
+                      type="number"
                       name={"price"}
                       defaultValue={fone.price}
+                      onKeyUp={this.handleChange}
+                    ></input>
+                    <br />
+                    <label>Specifications and Comments: </label>
+                    <input
+                      type="text"
+                      name={"specs"}
+                      defaultValue={fone.specs}
                       onKeyUp={this.handleChange}
                     ></input>
                     <br />
                     <label>Image URL: </label>
                     <input
                       type="text"
-                      name={"specs"}
-                      defaultValue={fone.specs}
+                      name={"image"}
+                      defaultValue={fone.image}
                       onKeyUp={this.handleChange}
                     ></input>
                     <br />

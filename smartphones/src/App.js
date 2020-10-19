@@ -112,7 +112,7 @@ class App extends React.Component {
                       type="text"
                       name={"name"}
                       defaultValue={fone.name}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <label>OS Type: </label>
@@ -120,7 +120,7 @@ class App extends React.Component {
                       type="text"
                       name={"ostype"}
                       defaultValue={fone.ostype}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <label>Brand: </label>
@@ -128,7 +128,7 @@ class App extends React.Component {
                       type="text"
                       name={"brand"}
                       defaultValue={fone.brand}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <label>Price:</label>
@@ -136,7 +136,7 @@ class App extends React.Component {
                       type="number"
                       name={"price"}
                       defaultValue={fone.price}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <label>Specifications and Comments: </label>
@@ -144,7 +144,7 @@ class App extends React.Component {
                       type="text"
                       name={"specs"}
                       defaultValue={fone.specs}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <label>Image URL: </label>
@@ -152,7 +152,7 @@ class App extends React.Component {
                       type="text"
                       name={"image"}
                       defaultValue={fone.image}
-                      onKeyUp={this.handleChange}
+                      onChange={this.handleChange}
                     ></input>
                     <br />
                     <input className="btn btn-dark" type="submit"></input>

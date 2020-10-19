@@ -90,13 +90,17 @@ class App extends React.Component{
           <input type="text" name={"price"} onKeyUp={this.handleChange}></input><br/>
           <label>Image URL: </label>
           <input type="text" name={"specs"} onKeyUp={this.handleChange}></input><br/>
-          <input className="butbtn btn-secondary" type="submit"></input>
+          <input className="btn btn-light" type="submit"></input>
         </form><br/><br/><br/>
 
+        <ul className="list-group">
         {this.state.phones.map(fone => {
-          return <div key = {fone.id}>
-            <h1>{fone.name}</h1>
-            <p>${fone.price}, made by {fone.brand} and runs on {fone.ostype}</p>
+          return <li className="list-group-item" key = {fone.id}>
+            <div className="d-flex w-100 justify-content-between">
+              <h1 className="mb-1">{fone.name}</h1>
+              <small>${fone.price}</small>
+            </div>
+            <p>made by {fone.brand} and runs on {fone.ostype}</p>
             <img className="rounded mx-auto d-block" src={fone.specs} alt={fone.specs}/>
             <details>
               <summary>Edit</summary>
@@ -111,12 +115,13 @@ class App extends React.Component{
                 <input type="text" name={"price"} defaultValue = {fone.price} onKeyUp={this.handleChange}></input><br/>
                 <label>Image URL: </label>
                 <input type="text" name={"specs"} defaultValue = {fone.specs} onKeyUp={this.handleChange}></input><br/>
-                <input type="submit"></input>
+                <input className="btn btn-dark" type="submit"></input>
               </form>
             </details>
-            <button className="btn btn-secondary" onClick={this.handleDelete} id={fone.id}>DELETE</button><br />
-          </div>
+            <button className="btn btn-danger" onClick={this.handleDelete} id={fone.id}>DELETE</button><br />
+          </li>
         })}
+        </ul>
       </div>
     )
   }

@@ -15,7 +15,6 @@ class Form extends Component {
 
   handleCreate = (event) => {
     event.preventDefault();
-    console.log(this.state.name);
     this.props.handleCreate(event, {
       name: this.state.name,
       ostype: this.state.ostype,
@@ -37,8 +36,6 @@ class Form extends Component {
     // if this is the edit form, change the view back
   };
   render() {
-    console.log(this.state.name);
-    console.log("we are here")
     return (
       <form onSubmit={this.handleCreate}>
         <label>Phone Name: </label>
@@ -50,8 +47,6 @@ class Form extends Component {
           onKeyUp={this.handleChange}
         ></input>
 
-        {console.log(this.state.name)}
-        {console.log("we are here pt2")}
         <br />
         <label>Operating System: </label>
         <input type="text" name="ostype" onChange={this.handleChange}></input>

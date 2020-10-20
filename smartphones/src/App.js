@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./components/Header.js";
 import Form from "./components/Form.js";
 import Items from "./components/Items.js";
+import Edit from "./components/Edit.js"
 
 class App extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class App extends React.Component {
     // specs: undefined,
     // brand: undefined,
     phones: [],
+    whichForm: true
   };
   componentDidMount = () => {
     this.getPhones();
@@ -83,13 +85,40 @@ class App extends React.Component {
       )
       .catch((error) => console.error(error));
   };
-  
+
+  toEditForm = (event, id) =>{
+    let somevar;
+    console.log(this.state)
+    for(let key of this.state.phones){
+      console.log("key",key);
+      if(id == key.id){
+        somevar = key;
+      }
+    }
+    this.setState({
+      whichForm: false,
+      fone: somevar
+    })
+  }
+
+  toCreateForm = () =>{
+    this.setState({
+      whichForm: true
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <Header />
+        {this.state.whichForm ?
+
         <Form handleCreate={this.handleCreate} />
-        <Items phones = {this.state.phones} handleDelete = {this.handleDelete} handleChange = {this.handleChange} handleUpdate={this.handleUpdate} />
+        :
+        <Edit cancel={this.toCreateForm} fone = {this.state.fone} handleUpdate={this.handleUpdate} handleChange = {this.handleChange} />
+
+        }
+        <Items phones = {this.state.phones} handleDelete = {this.handleDelete} runUpdateForm={this.toEditForm} />
       </div>
     );
   }

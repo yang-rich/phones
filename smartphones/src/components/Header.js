@@ -3,7 +3,7 @@ import React from "react";
 export default function Header(props) {
   return (
     <header>
-      <h2>Create a new smartphone listing!</h2>
+      <h2>Interesting List of Smartphones!</h2>
     </header>
   );
 }

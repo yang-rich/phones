@@ -5,8 +5,14 @@ class Items extends Component {
       // phones: this.props.phones
     }
 
+    runUpdateForm = (event) =>{
+      console.log(event.target.getAttribute('id'));
+      let did = event.target.getAttribute('id');
+      this.props.runUpdateForm(event, did);
+    }
+
     render () {
-      const { phones, handleUpdate, handleDelete, handleChange } = this.props;
+      const { phones, handleDelete} = this.props;
         return (
             <div>
               <ul className="list-group">
@@ -25,60 +31,7 @@ class Items extends Component {
                         src={fone.image}
                         alt={fone.image}
                       />
-                      <details>
-                        <summary>Edit</summary>
-                        <form id={fone.id} onSubmit={handleUpdate}>
-                          <label>Name: </label>
-                          <input
-                            type="text"
-                            name={"name"}
-                            defaultValue={fone.name}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <label>OS Type: </label>
-                          <input
-                            type="text"
-                            name={"ostype"}
-                            defaultValue={fone.ostype}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <label>Brand: </label>
-                          <input
-                            type="text"
-                            name={"brand"}
-                            defaultValue={fone.brand}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <label>Price:</label>
-                          <input
-                            type="number"
-                            name={"price"}
-                            defaultValue={fone.price}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <label>Specifications and Comments: </label>
-                          <input
-                            type="text"
-                            name={"specs"}
-                            defaultValue={fone.specs}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <label>Image URL: </label>
-                          <input
-                            type="text"
-                            name={"image"}
-                            defaultValue={fone.image}
-                            onChange={handleChange}
-                          ></input>
-                          <br />
-                          <input className="btn btn-dark" type="submit"></input>
-                        </form>
-                      </details>
+                      <button id={fone.id} onClick={this.runUpdateForm}>Edit</button>
                       <button
                         className="btn btn-danger"
                         onClick={handleDelete}

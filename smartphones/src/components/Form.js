@@ -37,34 +37,37 @@ class Form extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleCreate}>
-        <label>Phone Name: </label>
-        <input
-          type="text"
-          name="name"
-          // value={this.state.name}
-          // defaultValue={this.state.name}
-          onKeyUp={this.handleChange}
-        ></input>
+      <div>
+        <h2>Create a new smartphone listing!</h2>
+        <form onSubmit={this.handleCreate}>
+          <label>Phone Name: </label>
+          <input
+            type="text"
+            name="name"
+            // value={this.state.name}
+            // defaultValue={this.state.name}
+            onKeyUp={this.handleChange}
+          ></input>
 
-        <br />
-        <label>Operating System: </label>
-        <input type="text" name="ostype" onChange={this.handleChange}></input>
-        <br />
-        <label>Phone Brand: </label>
-        <input type="text" name="brand" onChange={this.handleChange}></input>
-        <br />
-        <label>Price: $</label>
-        <input type="number" name="price" onChange={this.handleChange}></input>
-        <br />
-        <label>Specifications and Comments: </label>
-        <input type="text" name="specs" onChange={this.handleChange}></input>
-        <br />
-        <label>Image URL: </label>
-        <input type="text" name="image" onChange={this.handleChange}></input>
-        <br />
-        <input className="btn btn-light" type="submit"></input>
-      </form>
+          <br />
+          <label>Operating System: </label>
+          <input type="text" name="ostype" onChange={this.handleChange}></input>
+          <br />
+          <label>Phone Brand: </label>
+          <input type="text" name="brand" onChange={this.handleChange}></input>
+          <br />
+          <label>Price: $</label>
+          <input type="number" name="price" onChange={this.handleChange}></input>
+          <br />
+          <label>Specifications and Comments: </label>
+          <input type="text" name="specs" onChange={this.handleChange}></input>
+          <br />
+          <label>Image URL: </label>
+          <input type="text" name="image" onChange={this.handleChange}></input>
+          <br />
+          <input className="btn btn-light" type="submit"></input>
+        </form>
+      </div>
     );
   }
 }
